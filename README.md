@@ -11,7 +11,11 @@ Frontend
 Backend
 - Express
 - Nodemon
+- Mongoose
+- Dotenv
 
-Move repo by using `mv git`
+Notes:
+- Move repo by using `mv git`
+- Add `.env` file to `.gitignore` to store passwords safely
 
 and more... to be added later.
