@@ -5,5 +5,7 @@ Environment, tools, libraries, and frameworks used:
 Frontend
 - Vite + React (w/ Javascript + SWC)
 - Tailwind CSS
+- React Router Dom (to import BrowserRouter, Routes, Route, and Link)
+- React Icons
 
 and more... to be added later.
