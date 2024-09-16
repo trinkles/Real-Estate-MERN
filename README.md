@@ -8,4 +8,10 @@ Frontend
 - React Router Dom (to import BrowserRouter, Routes, Route, and Link)
 - React Icons
 
+Backend
+- Express
+- Nodemon
+
+Move repo by using `mv git`
+
 and more... to be added later.
