@@ -17,3 +17,8 @@ const app = express();
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
+
+// test api... could be improved
+app.get("/", (req, res) => {
+  res.json({ message: "Hello World!" });
+});
