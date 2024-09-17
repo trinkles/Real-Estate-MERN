@@ -13,6 +13,7 @@ Backend
 - Nodemon
 - Mongoose
 - Dotenv
+- BcryptJS
 
 Notes:
 - Move repo by using `mv git`
