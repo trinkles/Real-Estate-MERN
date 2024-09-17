@@ -26,7 +26,7 @@ app.listen(3000, () => {
 // test api
 app.use("/api/user", userRouter);
 
-// signup api
+// signup & signin api
 app.use("/api/auth", authRouter);
 
 // error handling middleware

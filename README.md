@@ -14,6 +14,7 @@ Backend
 - Mongoose
 - Dotenv
 - BcryptJS
+- JWT
 
 Notes:
 - Move repo by using `mv git`
