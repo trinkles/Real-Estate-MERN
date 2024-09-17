@@ -7,6 +7,7 @@ Frontend
 - Tailwind CSS
 - React Router Dom (to import BrowserRouter, Routes, Route, and Link)
 - React Icons
+- Redux Toolkit
 
 Backend
 - Express
@@ -17,7 +18,8 @@ Backend
 - JWT
 
 Notes:
-- Move repo by using `mv git`
-- Add `.env` file to `.gitignore` to store passwords safely
+- move repo by using `mv git`
+- add `.env` file to `.gitignore` to store passwords safely
+- get Redux DevTools as browser extension
 
 and more... to be added later.
