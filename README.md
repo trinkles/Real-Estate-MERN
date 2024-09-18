@@ -8,6 +8,7 @@ Frontend
 - React Router Dom (to import BrowserRouter, Routes, Route, and Link)
 - React Icons
 - Redux Toolkit
+- Redux Persist
 
 Backend
 - Express
