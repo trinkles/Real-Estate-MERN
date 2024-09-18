@@ -9,6 +9,7 @@ Frontend
 - React Icons
 - Redux Toolkit
 - Redux Persist
+- Firebase
 
 Backend
 - Express
