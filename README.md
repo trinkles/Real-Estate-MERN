@@ -18,6 +18,7 @@ Backend
 - Dotenv
 - BcryptJS
 - JWT
+- Cookie Parser
 
 Notes:
 - move repo by using `mv git`
