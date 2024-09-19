@@ -8,15 +8,7 @@ import {
 } from "firebase/storage";
 import { app } from "../firebase.js";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  deleteUserFailure,
-  deleteUserStart,
-  deleteUserSuccess,
-  updateUserFailure,
-  updateUserStart,
-  updateUserSuccess,
-} from "../redux/user/userSlice.js";
+import { failure, start, successful, successfulOut } from "../redux/user/userSlice.js";
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -27,7 +19,6 @@ export default function Profile() {
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (file) {
@@ -66,7 +57,7 @@ export default function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(updateUserStart());
+      dispatch(start());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {
@@ -76,32 +67,46 @@ export default function Profile() {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(updateUserFailure(data.message));
+        dispatch(failure(data.message));
         return;
       }
 
-      dispatch(updateUserSuccess(data));
+      dispatch(successful(data));
       setUpdateSuccess(true);
     } catch (error) {
-      dispatch(updateUserFailure(error.message));
+      dispatch(failure(error.message));
     }
   };
 
   const handleDeleteUser = async (e) => {
     try {
-      dispatch(deleteUserStart());
+      dispatch(start());
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(deleteUserFailure(data.message));
+        dispatch(failure(data.message));
         return;
       }
-      dispatch(deleteUserSuccess(null));
-      navigate("/");
+      dispatch(successfulOut(data));
     } catch (error) {
-      dispatch(deleteUserFailure(error.message));
+      dispatch(failure(error.message));
+    }
+  };
+
+  const handleSignout = async (e) => {
+    try {
+      dispatch(start());
+      const res = await fetch("/api/auth/signout");
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(failure(error.message));
+        return;
+      }
+      dispatch(successfulOut(data));
+    } catch (error) {
+      dispatch(failure(data.message));
     }
   };
 
@@ -130,7 +135,7 @@ export default function Profile() {
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className="text-slate-700">{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
-            <span className="text-green-700">Image successfully uploaded!</span>
+            <span className="text-green-700">Image uploaded!</span>
           ) : (
             ""
           )}
@@ -172,12 +177,14 @@ export default function Profile() {
         >
           Delete Account
         </span>
-        <span className="text-slate-700">Sign Out</span>
+        <span onClick={handleSignout} className="text-slate-700 cursor-pointer">
+          Sign Out
+        </span>
       </div>
 
       <p className="text-red-500 mt-5">{error ? error : ""}</p>
       <p className="text-green-500 mt-5">
-        {updateSuccess ? "Profile info updated successfully" : ""}
+        {updateSuccess ? "Profile info updated" : ""}
       </p>
     </div>
   );
